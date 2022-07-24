@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {Button} from '../components/Button';
 import {Input} from '../components/Input';
+import {SkillCard} from '../components/SkillCard';
 import {Title} from '../components/Title';
 
 export function Home() {
@@ -19,14 +20,7 @@ export function Home() {
       />
       <Button onPress={handleAddSkill}>Adding</Button>
       <Text style={[styles.text, {marginTop: 50}]}>My Skills</Text>
-      <FlatList
-        style={styles.list}
-        data={skills}
-        keyExtractor={(_, index) => index.toString()}
-        renderItem={({item}) => (
-          <Text style={styles.skillsListText}>{item}</Text>
-        )}
-      />
+      <SkillCard data={skills} styleList={styles.skillsList} />
     </View>
   );
 }
@@ -43,17 +37,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  skillsListText: {
-    backgroundColor: '#1f1e2a',
-    fontSize: 16,
-    fontWeight: 'bold',
-    padding: 10,
-    color: 'white',
-    marginTop: 10,
-    marginRight: 10,
-    marginLeft: 10,
-    textAlign: 'center',
-    borderRadius: 50,
   },
 });
