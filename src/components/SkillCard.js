@@ -1,13 +1,15 @@
 import React from 'react';
-import {FlatList, Text, StyleSheet} from 'react-native';
+import { FlatList, Text, StyleSheet } from 'react-native';
 
-export function SkillCard({data, styleList}) {
+export function SkillCard({ data, styleList }) {
   return (
     <FlatList
       style={styleList}
       data={data}
       keyExtractor={(_, index) => index.toString()}
-      renderItem={({item}) => <Text style={styles.skillsListText}>{item}</Text>}
+      renderItem={({ item }) => (
+        <Text style={styles.skillsListText}>{item}</Text>
+      )}
     />
   );
 }
