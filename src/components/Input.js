@@ -1,13 +1,14 @@
 import React from 'react';
-import {TextInput, StyleSheet} from 'react-native';
+import { TextInput, StyleSheet } from 'react-native';
 
-export function Input({onChangeText, placeholder}) {
+export function Input({ onChangeText, placeholder }) {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder}
       placeholderTextColor="#555"
       onChangeText={onChangeText}
+      autoCompleteType="true"
     />
   );
 }
