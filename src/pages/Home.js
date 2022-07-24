@@ -1,36 +1,32 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
+import {Button} from '../components/Button';
+import {Input} from '../components/Input';
+import {Title} from '../components/Title';
 
 export function Home() {
+  const [newSkill, setNewSkill] = useState('');
+  const [skills, setSkills] = useState([]);
+
+  const handleAddSkill = () => setSkills(oldState => [...oldState, newSkill]);
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <Text style={styles.text}>Welcome Eurico</Text>
-
-      <TextInput
-        style={styles.input}
-        placeholder="New skill"
-        placeholderTextColor="#555"
+      <Title>Welcome Eurico</Title>
+      <Input
+        onChangeText={text => setNewSkill(text)}
+        placeholder="What's your new skill?"
       />
-      <TouchableOpacity style={styles.button} activeOpacity={0.7}>
-        <Text style={styles.buttonText}>Add</Text>
-      </TouchableOpacity>
-
+      <Button onPress={handleAddSkill}>Adding</Button>
       <Text style={[styles.text, {marginTop: 50}]}>My Skills</Text>
-      <View style={styles.skillsList}>
-        <Text style={styles.skillsListText}>React Native</Text>
-        <Text style={styles.skillsListText}>ReactJS</Text>
-        <Text style={styles.skillsListText}>JavaScript</Text>
-        <Text style={styles.skillsListText}>NodeJS</Text>
-        <Text style={styles.skillsListText}>PHP</Text>
-      </View>
+      <FlatList
+        style={styles.list}
+        data={skills}
+        keyExtractor={(_, index) => index.toString()}
+        renderItem={({item}) => (
+          <Text style={styles.skillsListText}>{item}</Text>
+        )}
+      />
     </View>
   );
 }
@@ -48,39 +44,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-  input: {
-    height: 40,
-    backgroundColor: '#1f1e25',
-    borderRadius: 5,
-    marginTop: 30,
-    color: '#fff',
-    paddingHorizontal: 20,
-  },
-  button: {
-    backgroundColor: '#a370f7',
-    padding: 10,
-    marginTop: 30,
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
+  skillsListText: {
+    backgroundColor: '#1f1e2a',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  skillsList: {
-    marginTop: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  skillsListText: {
-    backgroundColor: '#1f1e25',
     padding: 10,
-    borderRadius: 5,
-    color: '#fff',
+    color: 'white',
     marginTop: 10,
     marginRight: 10,
     marginLeft: 10,
+    textAlign: 'center',
+    borderRadius: 50,
   },
 });
