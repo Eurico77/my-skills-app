@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 import { Button } from '../components/Button';
@@ -9,6 +9,8 @@ import { Title } from '../components/Title';
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
   const [skills, setSkills] = useState([]);
+
+  useEffect(() => {}, [skills]);
 
   const handleAddSkill = () => setSkills(oldState => [...oldState, newSkill]);
 
