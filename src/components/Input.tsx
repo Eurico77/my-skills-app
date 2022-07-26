@@ -1,14 +1,18 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-export function Input({ onChangeText, placeholder }) {
+interface Props {
+  onChangeText: (text: string) => void;
+  placeholder: string;
+}
+
+export function Input({ onChangeText, placeholder }: Props) {
   return (
     <TextInput
       style={styles.input}
       placeholder={placeholder}
       placeholderTextColor="#555"
       onChangeText={onChangeText}
-      autoCompleteType="true"
     />
   );
 }

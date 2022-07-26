@@ -1,7 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-export function Title({ children }) {
+interface Props {
+  children: string;
+}
+
+export function Title({ children }: Props) {
   return <Text style={styles.text}>{children}</Text>;
 }
 
